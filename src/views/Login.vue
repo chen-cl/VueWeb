@@ -40,21 +40,26 @@ export default {
   },
   methods: {
     submit() {
-      this.loading1 = true
       this.$refs.form.validate().then((result) => {
-        console.log('form valid: ', result)
-        this.$axios.get('/user', {
-          params: {
-            account: this.validateForm.username,
-            pwd: this.validateForm.password
-          }
-        })
-          .then(function(response) {
-            console.log(response)
+        if (result) {
+          const _this = this
+          _this.loading1 = true
+          _this.$axios.get('/user', {
+            params: {
+              account: _this.validateForm.username,
+              pwd: _this.validateForm.password
+            }
           })
-          .catch(function(error) {
-            console.log(error)
-          })
+            .then(function(response) {
+              console.log(response)
+              _this.loading1 = false
+              _this.$router.push('/home')
+            })
+            .catch(function(error) {
+              console.log(error)
+              _this.loading1 = false
+            })
+        }
       })
     },
     clear() {
