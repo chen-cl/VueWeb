@@ -51,8 +51,8 @@ export default {
             }
           })
             .then(function(response) {
-              console.log(response)
               _this.loading1 = false
+              sessionStorage.setItem('islogin', true)
               _this.$router.push('/home')
             })
             .catch(function(error) {

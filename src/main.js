@@ -23,7 +23,27 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  next()
+  if (to.meta.requireAuth) {
+    if (JSON.parse(sessionStorage.getItem('islogin'))) {
+      next()
+    } else {
+      next({
+        path: '/'// 指向为你的登录界面
+      })
+    }
+  } else {
+    next()
+  }
+
+  if (to.fullPath === '/') {
+    if (JSON.parse(sessionStorage.getItem('islogin'))) {
+      next({
+        path: from.fullPath
+      })
+    } else {
+      next()
+    }
+  }
 })
 
 new Vue({
