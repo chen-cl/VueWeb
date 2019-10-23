@@ -10,10 +10,12 @@ import 'muse-ui-loading/dist/muse-ui-loading.css'
 import './assets/material-icons.css'
 import Loading from 'muse-ui-loading'
 import Axios from 'axios'
+import Helpers from 'muse-ui/lib/Helpers'
 
 Vue.use(ElementUI)
 Vue.use(MuseUI)
 Vue.use(Loading)
+Vue.use(Helpers)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = Axios

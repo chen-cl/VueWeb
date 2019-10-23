@@ -11,7 +11,7 @@
             <mu-checkbox label="同意用户协议" v-model="validateForm.isAgree"></mu-checkbox>
           </mu-form-item>
           <mu-form-item>
-            <mu-button round  full-width color="primary" @click="submit" v-loading="loading1" data-mu-loading-size="24">登录</mu-button>
+            <mu-button ripple="true" round  full-width color="primary" @click="submit" v-loading="loading1" data-mu-loading-size="24">登录</mu-button>
           </mu-form-item>
         </mu-form>
 </mu-container>
@@ -44,7 +44,7 @@ export default {
         if (result) {
           const _this = this
           _this.loading1 = true
-          _this.$axios.get('/user', {
+          _this.$axios.post('/user', {
             params: {
               account: _this.validateForm.username,
               pwd: _this.validateForm.password
